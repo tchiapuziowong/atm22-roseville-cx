@@ -4,14 +4,14 @@
     - name: Display the availble timestamp format in Ansible
     debug: var=ansible_date_time
 
-- hosts: all
-  gather_facts: False
-  collections:
-    - arubanetworks.aoscx
-  tasks:
-    - debug: msg="the current date is {{ ansible_date_time.date }}"
+# - hosts: all
+#   gather_facts: False
+#   collections:
+#     - arubanetworks.aoscx
+#   tasks:
+#     - debug: msg="the current date is {{ ansible_date_time.date }}"
 
-    - debug: var=TFTP_SERVER
+#     - debug: var=TFTP_SERVER
 
 #    - name: Copy running-config to startup-config
 #      aoscx_checkpoint:
