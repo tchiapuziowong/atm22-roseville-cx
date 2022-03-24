@@ -17,7 +17,7 @@
 #      aoscx_checkpoint:
 #        source_config: 'running-config'
 #        destination_config: 'startup-config'
-
+#fdafdasf
 # - hosts: all
 #   gather_facts: False
 #   collections:
