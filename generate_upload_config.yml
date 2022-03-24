@@ -1,0 +1,28 @@
+- hosts: all
+  gather_facts: False
+  collections:
+    - arubanetworks.aoscx
+  tasks:
+    - debug: msg="the current date is {{ ansible_date_time.date }}"
+
+    - debug: var=TFTP_SERVER
+
+#    - name: Copy running-config to startup-config
+#      aoscx_checkpoint:
+#        source_config: 'running-config'
+#        destination_config: 'startup-config'
+
+# - hosts: all
+#   gather_facts: False
+#   collections:
+#     - arubanetworks.aoscx
+#   vars:
+#     ansible_connection: network_cli
+#   tasks:
+#     - name: generate vlans based on template
+#       template:
+#         src: cx_access.j2
+#         dest: ./generated_vlans.txt
+
+#     - name: Execute Generated Config via SSH
+#       aoscx_config:
