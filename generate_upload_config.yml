@@ -4,7 +4,7 @@
     - debug: var=ansible_date_time
 
     - set_fact:
-        config_datetime: "{{ansible_date_time}}"
+        config_datetime: "{{ansible_date_time.iso8601_basic_short}}"
 
 - hosts: all
   gather_facts: False
