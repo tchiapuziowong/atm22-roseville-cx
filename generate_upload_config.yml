@@ -13,24 +13,23 @@
   tasks:
     - debug: msg="the current date is {{ hostvars['localhost']['config_datetime']}}"
 
-#     - debug: var=TFTP_SERVER
+    - name: Copy running-config to checkpoint
+      aoscx_checkpoint:
+        source_config: 'running-config'
+        destination_config: "ANSIBLE_{{ hostvars['localhost']['config_datetime']}}"
 
-#    - name: Copy running-config to startup-config
-#      aoscx_checkpoint:
-#        source_config: 'running-config'
-#        destination_config: 'startup-config'
-#fdafdf
-# - hosts: all
-#   gather_facts: False
-#   collections:
-#     - arubanetworks.aoscx
-#   vars:
-#     ansible_connection: network_cli
-#   tasks:
-#     - name: generate vlans based on template
-#       template:
-#         src: cx_access.j2
-#         dest: ./generated_vlans.txt
+ - hosts: all
+   gather_facts: False
+   collections:
+     - arubanetworks.aoscx
+   vars:
+     ansible_connection: network_cli
+   tasks:
+     - name: Generate Device Specific Config via Template
+       template:
+         src: cx_access.j2
+         dest: ../tmp/{{inventory_hostname}}_tmp.txt
 
-#     - name: Execute Generated Config via SSH
-#       aoscx_config:
+     - name: Execute Generated Config via SSH
+       aoscx_config:
+         src: ../tmp/{{inventory_hostname}}_tmp.txt
