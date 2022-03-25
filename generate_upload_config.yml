@@ -3,12 +3,15 @@
   tasks:
     - debug: var=ansible_date_time
 
+    - set_fact:
+        config_datetime: "{{ansible_date_time}}"
+
 - hosts: all
   gather_facts: False
   collections:
     - arubanetworks.aoscx
   tasks:
-    - debug: msg="the current date is {{ ansible_date_time.date }}"
+    - debug: msg="the current date is {{ hostvars['localhost']['config_datetime']}}"
 
 #     - debug: var=TFTP_SERVER
 
