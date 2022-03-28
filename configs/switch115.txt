@@ -1,0 +1,190 @@
+Current configuration:
+!
+!Version ArubaOS-CX ML.10.07.0010
+!export-password: default
+hostname AutoCICD-01
+user admin group administrators password ciphertext AQBapeimm2ikDNtFTG+Tvs3h0RC/ezCMCpwT+B6CbsUd+iD0YgAAAAmgb29qDwgAQlDULUBIWj1uRRHtJ1WmVBtaFM7eWdEjc7S8NhlmqAGL/NhRKH//u4RfChpL//GqDBkLSHERUeRyGcbtRLbfoo/3/oqItuWrn3mjDWEQM//Sm+1J2G3E35vw
+!
+!
+!
+!
+!
+!
+ssh server vrf default
+ssh server vrf mgmt
+vsf member 1 
+    type jl728a
+vlan 1
+spanning-tree
+interface mgmt
+    no shutdown
+    ip static 192.168.0.215/24
+    default-gateway 192.168.0.1
+interface 1/1/1
+    shutdown
+    vlan access 1
+interface 1/1/2
+    shutdown
+    vlan access 1
+interface 1/1/3
+    shutdown
+    vlan access 1
+interface 1/1/4
+    shutdown
+    vlan access 1
+interface 1/1/5
+    shutdown
+    vlan access 1
+interface 1/1/6
+    shutdown
+    vlan access 1
+interface 1/1/7
+    shutdown
+    vlan access 1
+interface 1/1/8
+    shutdown
+    vlan access 1
+interface 1/1/9
+    shutdown
+    vlan access 1
+interface 1/1/10
+    shutdown
+    vlan access 1
+interface 1/1/11
+    shutdown
+    vlan access 1
+interface 1/1/12
+    shutdown
+    vlan access 1
+interface 1/1/13
+    shutdown
+    vlan access 1
+interface 1/1/14
+    shutdown
+    vlan access 1
+interface 1/1/15
+    shutdown
+    vlan access 1
+interface 1/1/16
+    shutdown
+    vlan access 1
+interface 1/1/17
+    shutdown
+    vlan access 1
+interface 1/1/18
+    shutdown
+    vlan access 1
+interface 1/1/19
+    shutdown
+    vlan access 1
+interface 1/1/20
+    shutdown
+    vlan access 1
+interface 1/1/21
+    shutdown
+    vlan access 1
+interface 1/1/22
+    shutdown
+    vlan access 1
+interface 1/1/23
+    shutdown
+    vlan access 1
+interface 1/1/24
+    shutdown
+    vlan access 1
+interface 1/1/25
+    shutdown
+    vlan access 1
+interface 1/1/26
+    shutdown
+    vlan access 1
+interface 1/1/27
+    shutdown
+    vlan access 1
+interface 1/1/28
+    shutdown
+    vlan access 1
+interface 1/1/29
+    shutdown
+    vlan access 1
+interface 1/1/30
+    shutdown
+    vlan access 1
+interface 1/1/31
+    shutdown
+    vlan access 1
+interface 1/1/32
+    shutdown
+    vlan access 1
+interface 1/1/33
+    shutdown
+    vlan access 1
+interface 1/1/34
+    shutdown
+    vlan access 1
+interface 1/1/35
+    shutdown
+    vlan access 1
+interface 1/1/36
+    shutdown
+    vlan access 1
+interface 1/1/37
+    shutdown
+    vlan access 1
+interface 1/1/38
+    shutdown
+    vlan access 1
+interface 1/1/39
+    shutdown
+    vlan access 1
+interface 1/1/40
+    shutdown
+    vlan access 1
+interface 1/1/41
+    shutdown
+    vlan access 1
+interface 1/1/42
+    shutdown
+    vlan access 1
+interface 1/1/43
+    shutdown
+    vlan access 1
+interface 1/1/44
+    shutdown
+    vlan access 1
+interface 1/1/45
+    shutdown
+    vlan access 1
+interface 1/1/46
+    shutdown
+    vlan access 1
+interface 1/1/47
+    shutdown
+    vlan access 1
+interface 1/1/48
+    shutdown
+    vlan access 1
+interface 1/1/49
+    no shutdown
+    vlan access 1
+interface 1/1/50
+    no shutdown
+    vlan access 1
+interface 1/1/51
+    no shutdown
+    vlan access 1
+interface 1/1/52
+    no shutdown
+    vlan access 1
+interface vlan 1
+        ! ip dhcp is ignored when static ip is configured
+    ip address 192.168.0.215/24
+    ip dhcp
+ip route 0.0.0.0/0 192.168.0.1
+!
+!
+!
+!
+!
+https-server vrf default
+https-server vrf mgmt
