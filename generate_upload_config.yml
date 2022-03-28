@@ -18,18 +18,32 @@
         source_config: 'running-config'
         destination_config: "ANSIBLE_{{ hostvars['localhost']['config_datetime']}}"
 
- - hosts: all
-   gather_facts: False
-   collections:
-     - arubanetworks.aoscx
-   vars:
-     ansible_connection: network_cli
-   tasks:
-     - name: Generate Device Specific Config via Template
-       template:
-         src: cx_access.j2
-         dest: ../tmp/{{inventory_hostname}}_tmp.txt
+- hosts: all
+  gather_facts: False
+  collections:
+    - arubanetworks.aoscx
+  vars:
+      ansible_connection: network_cli
+  tasks:
+    - name: Backup Config
+      aoscx_config:
+        backup: True
+        backup_options:
+          filename: "{{inventory_hostname}}.txt"
+          dir_path: ../      
+#  - hosts: all
+#    gather_facts: False
+#    collections:
+#      - arubanetworks.aoscx
+#    vars:
+#      ansible_connection: network_cli
+#    tasks:
+#      - name: Generate Device Specific Config via Template
+#        template:
+#          src: cx_access.j2
+#          dest: ../tmp/{{inventory_hostname}}_tmp.txt
 
-     - name: Execute Generated Config via SSH
-       aoscx_config:
-         src: ../tmp/{{inventory_hostname}}_tmp.txt
+#      - name: Execute Generated Config via SSH
+#        aoscx_config:
+#          src: ../tmp/{{inventory_hostname}}_tmp.txt
+#          back
