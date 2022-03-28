@@ -30,7 +30,7 @@
         backup: True
         backup_options:
           filename: "{{inventory_hostname}}.txt"
-          dir_path: ./configs/      
+          dir_path: ./configs      
 #  - hosts: all
 #    gather_facts: False
 #    collections:
