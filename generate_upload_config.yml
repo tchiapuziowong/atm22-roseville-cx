@@ -6,6 +6,12 @@
     - set_fact:
         config_datetime: "{{ansible_date_time.iso8601_basic_short}}"
 
+      - name: Generate Device Specific Config via Template
+        template:
+          src: last_checkpoint.j2
+          dest: ../tmp/{{inventory_hostname}}_tmp.txt
+
+
 - hosts: all
   gather_facts: False
   collections:
@@ -24,7 +30,16 @@
       aoscx_command:
         commands:
           - copy running check ANSIBLE_{{ hostvars['localhost']['config_datetime']}}
-    
+
+    - name: Generate Device Specific Config via Template
+      template:
+        src: cx_access.j2
+        dest: ../tmp/{{inventory_hostname}}_tmp.txt
+
+    - name: Copy Config to switch
+      aoscx_config:
+        src: ../tmp/{{inventory_hostname}}_tmp.txt
+
     - name: Backup Config Locally 
       aoscx_config:
         backup: True

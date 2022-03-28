@@ -1,0 +1,3 @@
+mgmt_ip: 192.168.0.217
+mgmt_gateway: 192.168.0.1
+hostname: AutoCICD-03

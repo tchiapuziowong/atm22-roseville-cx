@@ -1,0 +1,5 @@
+{% for host in hostvars %}
+{% if host.inventory_hostname is not localhost %}
+{{host.inventory_hostname}}: {{hostvars['localhost']['config_datetime']}}
+{% endif %}
+{% endfor %}
