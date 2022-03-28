@@ -13,11 +13,6 @@
   tasks:
     - debug: msg="the current date is {{ hostvars['localhost']['config_datetime']}}"
 
-    # - name: Copy running-config to checkpoint
-    #   aoscx_checkpoint:
-    #     source_config: 'running-config'
-    #     destination_config: "ANSIBLE_{{ hostvars['localhost']['config_datetime']}}"
-
 - hosts: all
   gather_facts: False
   collections:
@@ -25,16 +20,17 @@
   vars:
       ansible_connection: network_cli
   tasks:
-    - name: Backup checkpoint via CLI
+    - name: Backup checkpoint BEFORE Ansible 
       aoscx_command:
         commands:
           - copy running check ANSIBLE_{{ hostvars['localhost']['config_datetime']}}
-    - name: Backup Config
+    
+    - name: Backup Config Locally 
       aoscx_config:
         backup: True
         backup_options:
           filename: "{{inventory_hostname}}.txt"
-          dir_path: ../      
+          dir_path: ./configs/      
 #  - hosts: all
 #    gather_facts: False
 #    collections:
