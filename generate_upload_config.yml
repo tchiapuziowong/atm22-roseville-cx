@@ -6,10 +6,10 @@
     - set_fact:
         config_datetime: "{{ansible_date_time.iso8601_basic_short}}"
 
-      - name: Generate Device Specific Config via Template
-        template:
-          src: last_checkpoint.j2
-          dest: ../tmp/{{inventory_hostname}}_tmp.txt
+    - name: Generate Device Specific Config via Template
+      template:
+        src: last_checkpoint.j2
+        dest: ../tmp/{{inventory_hostname}}_tmp.txt
 
 
 - hosts: all
