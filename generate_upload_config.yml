@@ -9,8 +9,7 @@
     - name: Generate Device Specific Config via Template
       template:
         src: last_checkpoint.j2
-        dest: ../tmp/{{inventory_hostname}}_tmp.txt
-
+        dest: ./vars_files/last_checkpoint.yml
 
 - hosts: all
   gather_facts: False
