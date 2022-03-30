@@ -1,19 +1,4 @@
 hostname {{hostname}}
-ssh server vrf default
-ssh server vrf mgmt
-vlan 1
-spanning-tree
-interface mgmt
-    no shutdown
-    ip static {{mgmt_ip}}/24
-    default-gateway {{mgmt_gateway}}
-interface 1/1/14
-    description TsInterface
-interface vlan 1
-        ! ip dhcp is ignored when static ip is configured
-    ip address 192.168.0.215/24
-    ip dhcp
-ip route 0.0.0.0/0 192.168.0.1
 !
 !
 !
