@@ -1,4 +1,48 @@
 hostname {{hostname}}
+clock timezone america/los_angeles
+ntp server {{ntp_server}} iburst
+ntp enable
+!
+!
+!
+!
+ssh server vrf default
+ssh server vrf mgmt
+crypto pki ta-profile cppm
+    ta-certificate
+        -----BEGIN CERTIFICATE-----
+        MIIDYzCCAkugAwIBAgIQZiDAdPhWQqNE3PpMDBcTBjANBgkqhkiG9w0BAQsFADBEMRMwEQYKCZImiZPyLGQBGRYDbmV0MRYwFAYKCZImiZPyLGQBGRYGdG1lbGFiMRUwEwYDVQQDEwx0bWVsYWItQUQtQ0EwHhcNMTcwMzI5MDExMzA4WhcNMjIwMzI5MDEyMzA4WjBEMRMwEQYKCZImiZPyLGQBGRYDbmV0MRYwFAYKCZImiZPyLGQBGRYGdG1lbGFiMRUwEwYDVQQDEwx0bWVsYWItQUQtQ0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDrdqdR2QQm4Lo3i/X9bvTu41cf3sVFzPFn727zlgrYySXWtyvWM3Jzf6P3FsqQzrsaP+QhlNsYMTrY2Yiccm7C9gNshpx95elzXsZ2TBP88qoUPD9FjH42YgnqAN61+opmct8aRgSJhTtKv+WEolVtLgL9/CL3zmvmbpz3oyYjF9W3lespD52BeEbPqsBrALbYQypxJJLonZuueM7ePhSYbPnbrGuV8M9BiDyEyQ87OUYGgq7Jkrwjrer+BKYFIxqJQDHbY96ozbaUScv8nOylpUrH56r3jT5Xn05JDdOIJvBKniYKZxIK+m4Mv2XS0zxuZBG1F1YDl/bcQ353jazbAgMBAAGjUTBPMAsGA1UdDwQEAwIBhjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBQuBjOz0LpCALxkgy9bWbziV+1DUDAQBgkrBgEEAYI3FQEEAwIBADANBgkqhkiG9w0BAQsFAAOCAQEAydVR86YZez9NuIvJOftLczu0y3YfGoA5PK88Yv3TSMv+gxK5yiceU2HkV3PvVeCXyN9Nn9EUKLJ887/BqDTsNKKD20axHNk/w2p5I8LY6g/Y8t3N84gXx3439+GezBdlxznEmWAhebAQ/JMnp+aD9Xhw9tgGeDXMB/GIhx0PCK22VbRUoDeZP3o+LmdB2fOdqhfN8+e2OMpzAGsBGGEJJWqOKSUkHC25Jkl0RfyymdxuWEflHofbF2DjSWheR023A5dA6a5WkxTV7WxwC8ekitnlY5BT2ZHV1LXLUsgvuN3j8G2+yvYiS6Z/da3ORb6Grm79sqZpzlKZXWjU/zVxBQ==
+        -----END CERTIFICATE-----
+        END_OF_CERTIFICATE
+debug portaccess all
+vsf member 1
+    type jl725a
+vlan 1,255,4000
+spanning-tree
+interface mgmt
+    no shutdown
+    ip static {{mgmt_ip}}/24
+    default-gateway {{mgmt_gateway}}
+aaa authentication port-access dot1x authenticator
+    enable
+aaa authentication port-access mac-auth
+    enable
+interface lag 220
+    no shutdown
+    no routing
+    vlan trunk native 255
+    vlan trunk allowed 255
+    lacp mode active
+interface 1/1/1
+    no shutdown
+    no routing
+    vlan access 255
+interface vlan 1
+    ip dhcp
+interface vlan 255
+    ip address {{uplink_vlan_ip}}/24
+ip route 0.0.0.0/0 {{default_route}}
+ip dns server-address {{dns_server}} vrf mgmt
 !
 !
 !
@@ -6,3 +50,4 @@ hostname {{hostname}}
 !
 https-server vrf default
 https-server vrf mgmt
+nae-script network_health_monitor false ...
