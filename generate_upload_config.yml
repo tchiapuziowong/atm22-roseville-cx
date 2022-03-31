@@ -15,13 +15,6 @@
   gather_facts: False
   collections:
     - arubanetworks.aoscx
-  tasks:
-    - debug: msg="the current date is {{ hostvars['localhost']['config_datetime']}}"
-
-- hosts: all
-  gather_facts: False
-  collections:
-    - arubanetworks.aoscx
   vars:
     ansible_connection: network_cli
   tasks:
