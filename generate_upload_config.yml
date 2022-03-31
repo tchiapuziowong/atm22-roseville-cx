@@ -11,7 +11,7 @@
         src: last_checkpoint.j2
         dest: ./vars_files/last_checkpoint.yml
 
-- hosts: all
+- hosts: roseville-site
   gather_facts: False
   collections:
     - arubanetworks.aoscx
