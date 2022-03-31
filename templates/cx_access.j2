@@ -17,12 +17,6 @@ crypto pki ta-profile cppm
 debug portaccess all
 vsf member 1
     type jl725a
-vlan 1,255,4000
-class ip dhcp
-    10 match udp any 255.255.255.255 eq 67
-    20 match udp any 255.255.255.255 eq 68
-port-access policy vlan255-user-policy
-    10 class ip dhcp
 spanning-tree
 interface mgmt
     no shutdown
